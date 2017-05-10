@@ -1,0 +1,8 @@
+"select small element to s[i],if s[j]<s[i],swap.note python swap is different from c"
+def SelectSort(s):
+    n=len(s)
+    for i in range(0,n,1):        
+        for j in range(i+1,n,1):
+            if(s[j]<s[i]):                
+                s[i],s[j]=s[j],s[i]                
+    return s
