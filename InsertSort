@@ -1,0 +1,19 @@
+"assume the first element is on the right place, if back element is larger than
+" it do nothing ,else move front element to back then insert back element to right
+"place.
+
+def InsertSort(s):
+    n=len(s)
+    for i in range (1,n,1):
+        small=s[i]
+        j=i
+        while(small<s[j-1] and j>0):
+            s[j]=s[j-1]
+            j-=1
+        s[j]=small
+        print s
+    return s
+
+def testInsetSort():
+  s=[2,3,1,7,9,0]
+  InsertSort(s)
