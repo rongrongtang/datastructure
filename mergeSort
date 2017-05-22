@@ -1,0 +1,63 @@
+##version 0: wrong
+##def mergeSort(s):
+##    if(len(s)==1):
+##        return 
+##    else:
+##        mid=len(s)/2
+##        front=s[:mid]
+##        back=s[mid:]
+##        mergeSort(front)       
+##        mergeSort(back)
+##        print('front=',front,'back=',back)
+##        #merge(front,back)
+##        #print('after merge s=')
+
+##version 1:right
+##notice:return s, return merge(front,back) ,think what will happen if not like that 
+def mergeSort(s):
+    if(len(s)<=1):
+        return s
+    else:
+        mid=len(s)/2
+        front=mergeSort(s[:mid])
+        back=mergeSort(s[mid:])
+        print('front=',front,'back=',back)
+        return merge(front,back)
+        #print('after merge s=')
+
+
+
+"s1 is sorted,s2 is sorted,merge s1 and s2 to s, when s1 and s2 all has element"
+" compare s1 and s2,append smaller to s ,when s1 or s2 is end append it to s"
+        
+def merge(s1,s2):
+    s=[]
+    n1=len(s1)
+    n2=len(s2)
+    i=0
+    j=0    
+    while(i<n1 and j<n2):
+        if(s1[i]<s2[j]):
+            s.append(s1[i])
+            i+=1
+        else:
+            s.append(s2[j])
+            j+=1
+    while(i<n1):
+        s.append(s1[i])
+        i+=1
+    while(j<n2):
+        s.append(s2[j])
+        j+=1
+    print s
+    return s
+
+def testMerge():
+    s1=[0,9]
+    s2=[4,5]
+    merge(s1,s2)
+#testMerge()    
+def testMergeSort():
+    s=[2,3,1,7,0,9,4,5]
+    mergeSort(s)
+testMergeSort()    
