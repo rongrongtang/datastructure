@@ -1,0 +1,31 @@
+"find Max element in array by divide-conque method 
+##def MaxArr(arr,start,end):
+##    if(start==end):
+##        return arr[start]
+##    else:
+##        mid=(start+end)/2
+##        left=MaxArr(arr,start,mid)
+##        right=MaxArr(arr,mid+1,end)
+##        if(left>right):
+##            return left
+##        return right
+" find Max element index in array by divide-conque method
+def MaxArr(arr,start,end):
+    if(start==end):
+        return start
+    else:
+        mid=(start+end)/2
+        left=MaxArr(arr,start,mid)
+        right=MaxArr(arr,mid+1,end)
+        if(arr[left]>arr[right]):
+            return left
+        return right
+
+def test():
+    arr=[5,1,3,8,9,4,7,6]
+    start=0
+    end=len(arr)-1
+    print(arr)
+    r=MaxArr(arr,start,end)
+    print r
+test()
