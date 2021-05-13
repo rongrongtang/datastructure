@@ -1,46 +1,41 @@
-class Node:
-    def __init__(self,data=None):
-        self.data=data
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 19 11:19:07 2019
+
+@author: rrt
+"""
+
+class node:
+    def __init__(self,node=None):
+        self.node=node
         self.left=None
         self.right=None
+    
     def __str__(self):
-        return str(self.data)
-    
-class Tree:
-    def __init__(self,head=None):
-        self.head=head
-    def root(self):
-        return self.head
-    def add(self,num):
-        node=Node(num)
-        if not self.head:
-            self.head=node
-            return self.head
-        elif num<self.head.data:
-            if not self.head.left:
-                self.head.left=node
-            else:
-                left=Tree(self.head.left)
-                left.add(num)
-        else:
-            if not self.head.right:
-                self.head.right=node
-            else:
-                right=Tree(self.head.right)
-                right.add(num)
-    
-    def midPro(self):
-        if self.head:
-            left=Tree(self.head.left)
-            left.midPro()
-            print(self.head)
-            right=Tree(self.head.right)
-            right.midPro()
-            
-def BFS(root):
-    seq=[]
+        return str(self.node)
+
+def midTree(root):
+    if(root.left):
+        midTree(root.left)
+    print(root.node)
+    if(root.right):
+        midTree(root.right)
+        
+def preTree(root):
     if root:
-        seq.append(root)
+        print(root.node)
+        preTree(root.left)
+        preTree(root.right)
+        
+def postTree(root):
+    if root:
+        postTree(root.left)
+        postTree(root.right)
+        print(root.node)
+        
+def level(root):
+    seq=[]
+    seq.append(root)
     while(seq):
         cur=seq.pop(0)
         print(cur)
@@ -48,29 +43,54 @@ def BFS(root):
             seq.append(cur.left)
         if cur.right:
             seq.append(cur.right)
-            
-def DFS(root):
-    stack=[]
-    if root:
-        stack.append(root)
-    while(stack):
-        cur=stack.pop(-1)
-        print(cur)
-        if cur.left:
-            stack.append(cur.left)
-        if cur.right:
-            stack.append(cur.right)
-            
 
-def test():
-    t=Tree()
-    t.add(2)
-    t.add(1)
-    t.add(3)
-    t.add(4)
-    t.midPro()
-    BFS(t.root())
-    DFS(t.root())
+def insert(root,node):
+    if(not root ):
+        root=node
+    else:
+        if(root.node<node.node):
+            if(not root.right):
+                root.right=node
+            else:
+                insert(root.right,node)
+        else:
+            if(not root.left):
+                root.left=node
+            else:
+                insert(root.left,node)
     
-test()
-            
+    
+    
+
+root=node(46) 
+node1=node(25) 
+node2=node(78) 
+node3=node(62)
+node4=node(12)
+node5=node(37)
+node6=node(70)
+node7=node(29) 
+
+#root.left=node1
+#root.right=node2
+#node1.left=node4
+#node1.right=node5
+#node5.left=node7
+#node2.left=node3
+#node3.right=node6    
+
+#insert(None,root)
+insert(root,node1)
+insert(root,node2)
+insert(root,node3)
+insert(root,node4)
+insert(root,node5)
+insert(root,node6)
+insert(root,node7)
+
+
+
+midTree(root)
+#preTree(root)
+#postTree(root)
+#level(root)
