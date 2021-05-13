@@ -5,7 +5,7 @@ Created on Tue Nov 19 11:19:07 2019
 @author: rrt
 """
 
-class node:
+class Node:
     def __init__(self,node=None):
         self.node=node
         self.left=None
@@ -15,12 +15,11 @@ class node:
         return str(self.node)
 
 def midTree(root):
-    if(root.left):
+    if(root):
         midTree(root.left)
-    print(root.node)
-    if(root.right):
+        print(root.node)    
         midTree(root.right)
-        
+
 def preTree(root):
     if root:
         print(root.node)
@@ -59,38 +58,15 @@ def insert(root,node):
             else:
                 insert(root.left,node)
     
+def test():
+    nodes=[46,25,78,62,12,37,70,29]
+    root=Node(nodes[0])
+    for i in range(1,len(nodes)):
+        nodei=Node(nodes[i])
+        insert(root,nodei)
+    midTree(root)
     
+test()        
+        
     
 
-root=node(46) 
-node1=node(25) 
-node2=node(78) 
-node3=node(62)
-node4=node(12)
-node5=node(37)
-node6=node(70)
-node7=node(29) 
-
-#root.left=node1
-#root.right=node2
-#node1.left=node4
-#node1.right=node5
-#node5.left=node7
-#node2.left=node3
-#node3.right=node6    
-
-#insert(None,root)
-insert(root,node1)
-insert(root,node2)
-insert(root,node3)
-insert(root,node4)
-insert(root,node5)
-insert(root,node6)
-insert(root,node7)
-
-
-
-midTree(root)
-#preTree(root)
-#postTree(root)
-#level(root)
